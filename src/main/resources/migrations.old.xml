@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="joanne">
+        <createTable tableName="reservations">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="room" type="int"/>
+            <column name="name" type="varchar(255)"/>
+            <column name="email" type="varchar(255)"/>
+            <column name="guests_number" type="int"/>
+            <column name="date_in" type="date"/>
+            <column name="date_out" type="date"/>
+            <column name="date_reservation" type="date"/>
+            <column name="status" type="int"/>
+            <column name="notes" type="varchar(1000)"/>
+            <column name="telephone" type="varchar(50)"/>
+            <column name="channel" type="int"/>
+        </createTable>
+        <createTable tableName="vacation">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="room" type="int"/>
+            <column name="name" type="varchar(255)"/>
+            <column name="date_start" type="date"/>
+            <column name="date_end" type="date"/>
+            <column name="notes" type="varchar(1000)"/>
+        </createTable>
+        <createTable tableName="occupied_dates">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="id_reservation" type="bigint"/>
+            <column name="room" type="int"/>
+            <column name="date" type="date"/>
+        </createTable>
+        <createTable tableName="vacation_dates">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="id_vacation" type="bigint"/>
+            <column name="room" type="int"/>
+            <column name="date" type="date"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="joanne" id="2">
+	    <addForeignKeyConstraint baseColumnNames="id_reservation"
+	            baseTableName="occupied_dates"
+	            constraintName="link_reservation"
+	            onDelete="CASCADE"
+	            onUpdate="CASCADE"
+	            referencedColumnNames="id"
+	            referencedTableName="reservations"/>
+	    <addForeignKeyConstraint baseColumnNames="id_vacation"
+	            baseTableName="vacation_dates"
+	            constraintName="link_vacation"
+	            onDelete="CASCADE"
+	            onUpdate="CASCADE"
+	            referencedColumnNames="id"
+	            referencedTableName="vacation"/>
+	</changeSet>
+</databaseChangeLog>
