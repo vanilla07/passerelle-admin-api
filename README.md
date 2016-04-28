@@ -2,6 +2,10 @@
 
 A REST API to manage bookings for La Passerelle.
 
+This API is used here : http://jchevalier.pro/projects/bnb
+
+and linked to this angular project : http://github.com/vanilla07/passerelle-admin
+
 * Backend : Java / Dropwizard / Hibernate
 
 * Embedded H2 database
