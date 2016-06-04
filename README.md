@@ -12,7 +12,7 @@ and linked to this angular project : http://github.com/vanilla07/passerelle-admi
 
 # Running The Application
 
-To run the application run the following commands in project-logs/dropwizard-logs.
+To run the application run the following commands.
 
 * To package the example run (Maven and Java 8 required).
 
